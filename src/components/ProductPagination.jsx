@@ -1,34 +1,29 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Productpagination = ({ Dataperpage, Onpagechange,total}) => {
+const Productpagination = ({ Dataperpage, Onpagechange, total }) => {
   const [count, setCount] = useState(1);
 
- 
-
-  const onButtonClick=(type)=>{
-    if(type === "prev"){
-      if(count === 1){
-        setCount(1)
-      }else{
-        setCount(count - 1)
+  const onButtonClick = (type) => {
+    if (type === "prev") {
+      if (count === 1) {
+        setCount(1);
+      } else {
+        setCount(count - 1);
       }
-
-    }else if(type === "next"){
-      if(Math.ceil(total/Dataperpage)===count){
-        setCount(count)
-      }else{
-        setCount(count + 1)
+    } else if (type === "next") {
+      if (Math.ceil(total / Dataperpage) === count) {
+        setCount(count);
+      } else {
+        setCount(count + 1);
       }
-     }
-  }
-
+    }
+  };
   useEffect(() => {
     let value = Dataperpage * count;
-    console.log("startvelue",value-Dataperpage);
+    // console.log("startvelue",value-Dataperpage);
     Onpagechange(value - Dataperpage, value);
-    console.log("endvalue",value);
+    // console.log("endvalue",value);
   }, [count]);
   return (
     <>
@@ -36,7 +31,7 @@ const Productpagination = ({ Dataperpage, Onpagechange,total}) => {
         <ul className="pagination mb-0">
           <li className="page-item">
             <Link className="page-link" href="#">
-              <span onClick={()=>onButtonClick("prev")}>Previous</span>
+              <span onClick={() => onButtonClick("prev")}>Previous</span>
             </Link>
           </li>
           <li className="page-item">
@@ -56,7 +51,7 @@ const Productpagination = ({ Dataperpage, Onpagechange,total}) => {
           </li>
           <li className="page-item">
             <Link className="page-link" href="#">
-              <span onClick={()=>onButtonClick("next")}>Next</span>
+              <span onClick={() => onButtonClick("next")}>Next</span>
             </Link>
           </li>
         </ul>
